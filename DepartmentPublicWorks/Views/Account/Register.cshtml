@@ -1,0 +1,182 @@
+﻿@model DepartmentPublicWorks.Models.UserModel
+
+@{
+	ViewBag.Title = "Sign Up for Black Point";
+	Layout = null;
+	ViewBag.color = "red";
+	ViewBag.Notice = "green";
+}
+
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<style>
+	.back {
+		background:  #F2F1F1;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
+
+	.div-center {
+		width: 550px;
+		height: 400px;
+		position: absolute;
+		left: 70%;
+		right: 0;
+		top: 0;
+		bottom: 15%;
+		margin: auto;
+		max-width: 150%;
+		max-height: 100%;
+		overflow: auto;
+		padding: 1em 2em;
+		display: table;
+	}
+	.div-centers {
+		width: 1000px;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		right: 30%;
+		top: 0;
+		bottom: 15%;
+		margin: auto;
+		max-width: 150%;
+		max-height: 100%;
+		overflow: auto;
+		padding: 1em 2em;
+		display: table;
+	}
+
+	div.content {
+		display: table-cell;
+		vertical-align: middle;
+	}
+		.footer {
+		height: 50px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: #000000;
+        text-align: center;
+}
+</style>
+<div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">Black Point</a>
+		</div>
+		<div id="navbarCollapse" class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("Home", "Index", "Home")</li>
+				<li>@Html.ActionLink("Client Zone", "Index", "ClientZone")</li>
+				<li>@Html.ActionLink("Career", "Career", "DashBord")</li>
+				<li>@Html.ActionLink("Blog", "Blog", "ClientZone")</li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				@Html.ActionLink("Sign In for Black Point", "Login", "Account", new { @class = "btn btn-primary", @id = "logout" })
+			</form>
+		</div>
+	</nav>
+</div>
+<div class="back">
+	<div class="div-centers">
+		<div class="panel panel-inverse">
+			<div class="panel-heading"><h4>Black Point</h4></div>
+			<div class="panel-body">
+				<p><h3>Join Black Point</h3></p>
+				<p>The best solution to help our goverment on daily services.</p>
+			</div>
+		</div>
+	</div>
+	<div class="div-center">
+		<div class="panel panel-inverse">
+			<div class="panel-heading"><h4>@ViewBag.Title</h4></div>
+			<div class="panel-body">
+				<div class="content">
+					@using (Html.BeginForm("AddNewUser", "Account", FormMethod.Post))
+			{
+						@Html.AntiForgeryToken()
+
+						<div class="form-horizontal">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.UserName) } })
+									@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.FirstName) } })
+									@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.LastName) } })
+									@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.EmailAddress) } })
+									@Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.ContactNumber) } })
+									@Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									@Html.PasswordFor(model => model.Password, new { @class = "form-control", autocomplete = "off", placeholder = @Html.DisplayNameFor(model => model.Password) })
+									@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+									<font color="@ViewBag.Notice">Password must contain upper and lower case digit and special characters.</font>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-12">
+									<input type="submit" value="Sign Up for Black Point" class="btn btn-primary" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-10">
+								<font color="@ViewBag.color">@ViewBag.ErroMessage</font>
+							</div>
+						</div>
+			}
+				</div>
+			</div>
+		</div>
+</div>
+<div class="footer"><strong></strong>.</div>

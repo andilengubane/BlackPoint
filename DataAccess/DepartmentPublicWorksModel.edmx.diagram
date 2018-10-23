@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0029ddd805324d99bee5cc2f49a1b2f4" Name="Diagram1">
+        <EntityTypeShape EntityType="DepartmentOfPublicWorksModel.DashBoard" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DepartmentOfPublicWorksModel.DataLookUp" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DepartmentOfPublicWorksModel.LookUpName" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DepartmentOfPublicWorksModel.User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DepartmentOfPublicWorksModel.FK__DashBoard__UserI__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DepartmentOfPublicWorksModel.FK__DataLookU__LookU__60A75C0F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

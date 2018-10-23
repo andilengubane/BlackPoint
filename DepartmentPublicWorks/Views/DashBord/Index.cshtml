@@ -1,0 +1,190 @@
+﻿@model IEnumerable<DepartmentPublicWorks.Models.DashBoardModel>
+@{
+	ViewBag.Title = "DashBord";
+}
+
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<style>
+	td {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+  .circle {
+       height: 50px;
+       width: 100px;
+       border-radius: 50%;
+    }
+
+  	.back {
+		background: #F2F1F1;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
+
+	.div-center {
+		width: 1500px;
+		height: 500px;
+		position: absolute;
+		left: 0%;
+		right: 0%;
+		top: 0;
+		bottom: 15%;
+		margin: auto;
+		max-width: 150%;
+		max-height: 100%;
+		overflow: auto;
+		padding: 1em 2em;
+		display: table;
+	}
+
+	.borderless td, .borderless th {
+    border: none;
+}
+
+	div.content {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.footer {
+		height: 50px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: #000000;
+        text-align: center;
+}
+	
+</style>
+<div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">Black Point</a>
+		</div>
+		<div id="navbarCollapse" class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("DashBord", "Index", "DashBord")</li>
+				<li>@Html.ActionLink("Report", "Report", "DashBord")</li>
+				<li>@Html.ActionLink("Client Zone", "Clients", "DashBord")</li>
+			</ul>
+			<form class="navbar-form navbar-right">
+					@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						<input type="submit" value="Sign Out" class="btn btn-primary" />
+					}
+			</form>
+		</div>
+	</nav>
+</div>
+<div id="PopUpDashBordResult"></div>
+<div class="back">
+		<div class="div-center">
+			<div class="panel panel-inverse">
+				<br>
+				<li class="btn btn-default">
+					@Html.ActionLink("Notification", "Create", "DashBord", new { @class = "popup-link" })
+				</li>
+				<br>
+				<div class="panel-heading"><h4>Notifications</h4></div>
+				<div class="panel-body">
+					@using (Html.BeginForm())
+					{
+						<table style="width: 100%; border-spacing: 0 1em;" class="borderless">
+							<tr>
+								<td style="width: 2%; text-align: center">
+									Start Date
+								</td>
+								<td style="width: 2%; text-align: center">
+									@Html.TextBox("fromDate", null, new { id = "fromDate", @class = "form-control", autocomplete = "off" })
+								</td>
+								<td style="width: 2%; text-align: center">
+									End Date
+								</td>
+								<td style="width: 2%; text-align: center">
+									@Html.TextBox("toDate", null, new { id = "toDate", @class = "form-control", autocomplete = "off" })
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 2%; text-align: center">
+									Status
+								</td>
+								<td style="width: 2%; text-align: center">
+									@Html.DropDownList("StatusLsit", new SelectList(ViewBag.data, "Name", "Name"), new { @class = "form-control" })
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 2%; text-align: center">
+									<input type="submit" value="Search" class="btn btn-primary" />
+								</td>
+							</tr>
+						</table>
+					}
+				</div>
+				<br>
+					<table id="_expoertToExcel" class="table borderless">
+						<thead class="thead-light">
+							<tr>
+								<th>
+									Image
+								</th>
+								<th>
+									Description
+								</th>
+								<th>
+									Status
+								</th>
+								<th>
+									Created Date
+								</th>
+								<th>
+									Update
+								</th>
+							</tr>
+						</thead>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td class="circle">
+									@Html.DisplayFor(modelItem => item.ImageUrl, new { id = "_imageUrl" })
+								</td>
+								<td class="row-orderNumber">
+									@Html.DisplayFor(modelItem => item.Description, new { id = "_description" })
+								</td>
+								<td class="row-orderDate">
+									@Html.DisplayFor(modelItem => item.Status, new { id = "_stat us" })
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.DateLogged, new { id = "_datelogged" })
+								</td>
+								<td>
+									<a href="@Url.Action("Edit", "DashBord", new { id = item.ID })">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</a>
+								</td>
+							</tr>
+						}
+					</table>
+				</div>
+			</div>
+		</div>
+<div class="footer"><strong></strong>.</div>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DepartmentOfPublicWorksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DashBoard">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="DateLogged" Type="datetime" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="250" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Latitute" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DataLookUp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="DateLogged" Type="datetime" />
+    <Property Name="LookUpNameID" Type="int" />
+  </EntityType>
+  <EntityType Name="LookUpName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateLogged" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="DateLogged" Type="datetime" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <Association Name="FK__DashBoard__UserI__4AB81AF0">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="DashBoard" Type="Self.DashBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DashBoard">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DataLookU__LookU__60A75C0F">
+    <End Role="LookUpName" Type="Self.LookUpName" Multiplicity="0..1" />
+    <End Role="DataLookUp" Type="Self.DataLookUp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookUpName">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DataLookUp">
+        <PropertyRef Name="LookUpNameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DepartmentOfPublicWorksModelStoreContainer">
+    <EntitySet Name="DashBoard" EntityType="Self.DashBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataLookUp" EntityType="Self.DataLookUp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookUpName" EntityType="Self.LookUpName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__DashBoard__UserI__4AB81AF0" Association="Self.FK__DashBoard__UserI__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DashBoard" EntitySet="DashBoard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DataLookU__LookU__60A75C0F" Association="Self.FK__DataLookU__LookU__60A75C0F">
+      <End Role="LookUpName" EntitySet="LookUpName" />
+      <End Role="DataLookUp" EntitySet="DataLookUp" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,10 @@
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\DataAccess.dll
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\DataAccess.pdb
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\EntityFramework.dll
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\EntityFramework.xml
+C:\Apps\DepartmentPublicWorks\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Apps\DepartmentPublicWorks\DataAccess\obj\Debug\DataAccess.dll
+C:\Apps\DepartmentPublicWorks\DataAccess\obj\Debug\DataAccess.pdb
+C:\Apps\DepartmentPublicWorks\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
